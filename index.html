@@ -8,47 +8,137 @@
     <style>
       :root {
         color-scheme: light dark;
+        /* Light theme colors */
+        --bg-primary: #f7f9fc;
+        --bg-secondary: white;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --link-color: #2563eb;
+        --link-hover: #1d4ed8;
+        --shadow-color: rgba(0, 0, 0, 0.08);
+        --button-bg: #2563eb;
+        --button-hover: #1d4ed8;
+        --toggle-bg: #e5e7eb;
+        --toggle-text: #1f2937;
       }
+
+      /* Dark theme colors */
+      [data-theme="dark"] {
+        --bg-primary: #0f172a;
+        --bg-secondary: #1e293b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --link-color: #60a5fa;
+        --link-hover: #93c5fd;
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --button-bg: #3b82f6;
+        --button-hover: #60a5fa;
+        --toggle-bg: #334155;
+        --toggle-text: #f1f5f9;
+      }
+
+      /* Auto-detect system preference */
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          --bg-primary: #0f172a;
+          --bg-secondary: #1e293b;
+          --text-primary: #f1f5f9;
+          --text-secondary: #cbd5e1;
+          --link-color: #60a5fa;
+          --link-hover: #93c5fd;
+          --shadow-color: rgba(0, 0, 0, 0.3);
+          --button-bg: #3b82f6;
+          --button-hover: #60a5fa;
+          --toggle-bg: #334155;
+          --toggle-text: #f1f5f9;
+        }
+      }
+
       body {
         font-family: Arial, Helvetica, sans-serif;
         margin: 0;
         padding: 0;
-        background: #f7f9fc;
-        color: #1f2937;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
       }
+
+      header {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+
+      .theme-toggle {
+        background: var(--toggle-bg);
+        color: var(--toggle-text);
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .theme-toggle:hover {
+        opacity: 0.8;
+      }
+
       main {
         max-width: 760px;
         margin: 0 auto;
         padding: 3rem 1.25rem 4rem;
       }
+
       .card {
-        background: white;
+        background: var(--bg-secondary);
         border-radius: 16px;
         padding: 2rem;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 24px var(--shadow-color);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
       }
+
       h1 {
         margin-top: 0;
         font-size: 2rem;
       }
+
       p {
         line-height: 1.7;
       }
+
       a {
-        color: #2563eb;
+        color: var(--link-color);
+        transition: color 0.3s ease;
       }
+
+      a:hover {
+        color: var(--link-hover);
+      }
+
       .btn {
         display: inline-block;
         margin-top: 1rem;
         padding: 0.75rem 1rem;
-        background: #2563eb;
+        background: var(--button-bg);
         color: white;
         text-decoration: none;
         border-radius: 8px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background: var(--button-hover);
       }
     </style>
   </head>
   <body>
+    <header>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+    </header>
     <main>
       <section class="card">
         <h1>Welcome to Fotosik</h1>
@@ -57,5 +147,48 @@
         <a class="btn" href="privacy.html">Read the sample privacy policy</a>
       </section>
     </main>
+
+    <script>
+      // Theme management
+      const themeToggle = document.getElementById('themeToggle');
+      const htmlElement = document.documentElement;
+      const themeKey = 'theme-preference';
+
+      // Detect system preference
+      const getSystemTheme = () => 
+        window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+      // Load saved theme or use system preference
+      const loadTheme = () => {
+        const saved = localStorage.getItem(themeKey);
+        return saved || getSystemTheme();
+      };
+
+      // Update theme
+      const setTheme = (theme) => {
+        const isDark = theme === 'dark';
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem(themeKey, theme);
+        themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+      };
+
+      // Initialize theme
+      const currentTheme = loadTheme();
+      setTheme(currentTheme);
+
+      // Toggle theme on button click
+      themeToggle.addEventListener('click', () => {
+        const current = htmlElement.getAttribute('data-theme') || getSystemTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        setTheme(next);
+      });
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem(themeKey)) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+    </script>
   </body>
 </html>
