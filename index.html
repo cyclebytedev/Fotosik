@@ -87,6 +87,37 @@
         opacity: 0.8;
       }
 
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .lang-switcher {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .lang-btn {
+        width: 2.6rem;
+        height: 2.6rem;
+        border: none;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--toggle-bg);
+        color: var(--toggle-text);
+        cursor: pointer;
+        font-size: 1.45rem;
+        padding: 0;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .lang-btn:hover {
+        transform: scale(1.04);
+      }
+
       main {
         max-width: 760px;
         margin: 0 auto;
@@ -150,58 +181,114 @@
   </head>
   <body>
     <header>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+      <div class="header-controls">
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button class="lang-btn" id="languageToggle" type="button" aria-label="Switch to Polish" title="Switch to Polish">🇬🇧</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+      </div>
     </header>
     <main>
       <section class="card">
-        <h1>Welcome to Fotosik</h1>
-        <p>This is a sample homepage created for GitHub Pages. It is ready to be served publicly from the repository root.</p>
-        <p>You can replace this content with your own project information, features, screenshots, or contact details.</p>
-        <a class="btn" href="privacy.html">Read the sample privacy policy</a>
+        <h1 data-i18n="homeTitle">Welcome to Fotosik</h1>
+        <p data-i18n="homeIntro">This is a sample homepage created for GitHub Pages. It is ready to be served publicly from the repository root.</p>
+        <p data-i18n="homeDetails">You can replace this content with your own project information, features, screenshots, or contact details.</p>
+        <a class="btn" href="privacy.html" data-i18n="homePrivacyLink">Read the sample privacy policy</a>
       </section>
     </main>
 
     <footer>
-      <p>© 2026 CycleByteDev. All rights reserved.</p>
-      <p><a href="privacy.html">Privacy Policy</a></p>
+      <p data-i18n="footerRights">© 2026 CycleByteDev. All rights reserved.</p>
+      <p><a href="privacy.html" data-i18n="footerPrivacyLink">Privacy Policy</a></p>
     </footer>
 
     <script>
-      // Theme management
       const themeToggle = document.getElementById('themeToggle');
       const htmlElement = document.documentElement;
       const themeKey = 'theme-preference';
+      const languageKey = 'language-preference';
+      const languageToggle = document.getElementById('languageToggle');
+      let currentLanguage = localStorage.getItem(languageKey) === 'pl' ? 'pl' : 'en';
 
-      // Detect system preference
-      const getSystemTheme = () => 
+      const translations = {
+        en: {
+          pageTitle: 'Fotosik - Sample GitHub Pages Site',
+          homeTitle: 'Welcome to Fotosik',
+          homeIntro: 'This is a sample homepage created for GitHub Pages. It is ready to be served publicly from the repository root.',
+          homeDetails: 'You can replace this content with your own project information, features, screenshots, or contact details.',
+          homePrivacyLink: 'Read the sample privacy policy',
+          footerRights: '© 2026 CycleByteDev. All rights reserved.',
+          footerPrivacyLink: 'Privacy Policy'
+        },
+        pl: {
+          pageTitle: 'Fotosik - Przykładowa strona GitHub Pages',
+          homeTitle: 'Witamy w Fotosik',
+          homeIntro: 'To przykładowa strona główna utworzona dla GitHub Pages. Jest gotowa do publicznego udostępnienia z katalogu głównego repozytorium.',
+          homeDetails: 'Możesz zastąpić tę treść własnymi informacjami o projekcie, funkcjami, zrzutami ekranu lub danymi kontaktowymi.',
+          homePrivacyLink: 'Przeczytaj przykładową politykę prywatności',
+          footerRights: '© 2026 CycleByteDev. Wszelkie prawa zastrzeżone.',
+          footerPrivacyLink: 'Polityka prywatności'
+        }
+      };
+
+      const getSystemTheme = () =>
         window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-      // Load saved theme or use system preference
       const loadTheme = () => {
         const saved = localStorage.getItem(themeKey);
         return saved || getSystemTheme();
       };
 
-      // Update theme
       const setTheme = (theme) => {
         const isDark = theme === 'dark';
         htmlElement.setAttribute('data-theme', theme);
         localStorage.setItem(themeKey, theme);
-        themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+        const themeLabel = currentLanguage === 'pl'
+          ? (isDark ? '☀️ Jasny' : '🌙 Ciemny')
+          : (isDark ? '☀️ Light' : '🌙 Dark');
+        themeToggle.textContent = themeLabel;
       };
 
-      // Initialize theme
+      const updateLanguageButton = (language) => {
+        const flag = language === 'pl' ? '🇵🇱' : '🇬🇧';
+        languageToggle.textContent = flag;
+        languageToggle.setAttribute('aria-label', language === 'pl' ? 'Switch to English' : 'Switch to Polish');
+        languageToggle.setAttribute('title', language === 'pl' ? 'Switch to English' : 'Switch to Polish');
+      };
+
+      const applyLanguage = (language) => {
+        currentLanguage = language;
+        htmlElement.setAttribute('lang', language);
+        document.body.setAttribute('data-lang', language);
+        document.title = translations[language].pageTitle;
+
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.getAttribute('data-i18n');
+          if (translations[language][key]) {
+            element.textContent = translations[language][key];
+          }
+        });
+
+        updateLanguageButton(language);
+        localStorage.setItem(languageKey, language);
+        const currentTheme = htmlElement.getAttribute('data-theme') || loadTheme();
+        setTheme(currentTheme);
+      };
+
       const currentTheme = loadTheme();
       setTheme(currentTheme);
+      applyLanguage(currentLanguage);
 
-      // Toggle theme on button click
       themeToggle.addEventListener('click', () => {
         const current = htmlElement.getAttribute('data-theme') || getSystemTheme();
         const next = current === 'dark' ? 'light' : 'dark';
         setTheme(next);
       });
 
-      // Listen for system theme changes
+      languageToggle.addEventListener('click', () => {
+        applyLanguage(currentLanguage === 'pl' ? 'en' : 'pl');
+      });
+
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem(themeKey)) {
           setTheme(e.matches ? 'dark' : 'light');
