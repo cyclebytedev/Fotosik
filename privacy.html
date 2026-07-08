@@ -8,6 +8,9 @@
       name="description"
       content="Privacy Policy for Photo Spot Note."
     />
+
+
+    
     
     <style>
       :root {
@@ -98,6 +101,37 @@
         opacity: 0.8;
       }
 
+      .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .lang-switcher {
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .lang-btn {
+        width: 2.6rem;
+        height: 2.6rem;
+        border: none;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--toggle-bg);
+        color: var(--toggle-text);
+        cursor: pointer;
+        font-size: 1.45rem;
+        padding: 0;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+      }
+
+      .lang-btn:hover {
+        transform: scale(1.04);
+      }
+
       main {
         max-width: 760px;
         margin: 0 auto;
@@ -160,257 +194,418 @@
   </head>
   <body>
     <header>
-      <a href="index.html" class="nav-link">← Back to home</a>
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+      <a href="index.html" class="nav-link" data-i18n="backLink">← Back to home</a>
+      <div class="header-controls">
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+          <button class="lang-btn" id="languageToggle" type="button" aria-label="Switch to Polish" title="Switch to Polish">🇬🇧</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙 Dark</button>
+      </div>
     </header>
     <main>
       <section class="card">
-        <h1>Privacy Policy for Photo Spot Note</h1>
+        <h1 data-i18n="privacyTitle">Privacy Policy for Photo Spot Note</h1>
 
-        <p class="updated">Last updated: 4 July 2026</p>
+        <p class="updated" data-i18n="privacyUpdated">Last updated: 4 July 2026</p>
 
-        <p>
+        <p data-i18n="privacyIntro1">
           Photo Spot Note is a local-first app for saving photography locations,
           notes, photos, audio notes, and planned visits.
         </p>
 
-        <p>
+        <p data-i18n="privacyIntro2">
           This privacy policy explains what information the app uses, where it is
           stored, and when information may leave the app through optional system
           features.
         </p>
 
-        <h2>Data Stored by the App</h2>
+        <h2 data-i18n="sectionStored">Data Stored by the App</h2>
 
-        <p>
+        <p data-i18n="storedIntro">
           Photo Spot Note may store the following information when you create a
           photo spot:
         </p>
 
         <ul>
-          <li>Spot name</li>
-          <li>Text notes</li>
-          <li>Map coordinates</li>
-          <li>Planned visit date</li>
-          <li>Visited status</li>
-          <li>Reference photo</li>
-          <li>Audio note</li>
-          <li>
+          <li data-i18n="storedItem1">Spot name</li>
+          <li data-i18n="storedItem2">Text notes</li>
+          <li data-i18n="storedItem3">Map coordinates</li>
+          <li data-i18n="storedItem4">Planned visit date</li>
+          <li data-i18n="storedItem5">Visited status</li>
+          <li data-i18n="storedItem6">Reference photo</li>
+          <li data-i18n="storedItem7">Audio note</li>
+          <li data-i18n="storedItem8">
             Calendar event identifier, if you choose to add a planned visit to
             Calendar
           </li>
         </ul>
 
-        <p>
+        <p data-i18n="storedOutro">
           This data is stored locally on your device inside the app’s private
           storage.
         </p>
 
-        <h2>No Tracking or Analytics</h2>
+        <h2 data-i18n="sectionTracking">No Tracking or Analytics</h2>
 
-        <p>
+        <p data-i18n="trackingIntro1">
           Photo Spot Note does not collect analytics, tracking data, advertising
           identifiers, or account information.
         </p>
 
-        <p>
+        <p data-i18n="trackingIntro2">
           The app does not include third-party analytics SDKs, advertising SDKs,
           or tracking tools.
         </p>
 
-        <p>
+        <p data-i18n="trackingIntro3">
           The app does not operate a server and does not send your photo spot
           data to us.
         </p>
 
-        <h2>Location</h2>
+        <h2 data-i18n="sectionLocation">Location</h2>
 
-        <p>
+        <p data-i18n="locationIntro1">
           Photo Spot Note uses location permission only to help you save your
           current location as a photo spot and show your position on the map.
         </p>
 
-        <p>
+        <p data-i18n="locationIntro2">
           You can also place a spot manually on the map without using your
           current GPS location.
         </p>
 
-        <p>
+        <p data-i18n="locationIntro3">
           Your saved spot coordinates are stored locally in the app unless you
           choose to share them through Calendar using the Full Details option.
         </p>
 
-        <h2>Photos</h2>
+        <h2 data-i18n="sectionPhotos">Photos</h2>
 
-        <p>
+        <p data-i18n="photosIntro1">
           If you take or choose a reference photo, the app stores a processed copy
           locally inside the app.
         </p>
 
-        <p>
+        <p data-i18n="photosIntro2">
           Photo Spot Note reprocesses saved photos to reduce file size and remove
           original image metadata, including embedded EXIF/GPS metadata.
         </p>
 
-        <p>The app does not upload your photos.</p>
+        <p data-i18n="photosIntro3">The app does not upload your photos.</p>
 
-        <h2>Audio Notes</h2>
+        <h2 data-i18n="sectionAudio">Audio Notes</h2>
 
-        <p>
+        <p data-i18n="audioIntro1">
           If you record an audio note, the recording is stored locally inside the
           app.
         </p>
 
-        <p>The app does not upload your audio recordings.</p>
+        <p data-i18n="audioIntro2">The app does not upload your audio recordings.</p>
 
-        <h2>Calendar Integration</h2>
+        <h2 data-i18n="sectionCalendar">Calendar Integration</h2>
 
-        <p>Calendar integration is optional.</p>
+        <p data-i18n="calendarIntro1">Calendar integration is optional.</p>
 
-        <p>
+        <p data-i18n="calendarIntro2">
           If you choose to add a planned visit to Calendar, Photo Spot Note
           creates a Calendar event on your device.
         </p>
 
-        <p>
+        <p data-i18n="calendarIntro3">
           Calendar events may sync through the Calendar account configured on
           your device, such as iCloud, Google, or Exchange. That syncing is
           managed by your Calendar provider, not by Photo Spot Note.
         </p>
 
-        <p>Photo Spot Note offers two Calendar detail levels:</p>
+        <p data-i18n="calendarIntro4">Photo Spot Note offers two Calendar detail levels:</p>
 
         <ul>
-          <li>
-            <strong>Private:</strong> the Calendar event includes the spot title
-            and an app link only.
+          <li data-i18n="calendarItem1">
+            Private: the Calendar event includes the spot title and an app link only.
           </li>
-          <li>
-            <strong>Full Details:</strong> the Calendar event also includes your
-            note and exact map location.
+          <li data-i18n="calendarItem2">
+            Full Details: the Calendar event also includes your note and exact map location.
           </li>
         </ul>
 
-        <p>
+        <p data-i18n="calendarOutro">
           You can choose the level of detail before adding a Calendar event.
         </p>
 
-        <h2>Apple Maps</h2>
+        <h2 data-i18n="sectionMaps">Apple Maps</h2>
 
-        <p>
+        <p data-i18n="mapsIntro1">
           Photo Spot Note uses Apple Maps / MapKit to display maps and open saved
           locations in Apple Maps.
         </p>
 
-        <p>
+        <p data-i18n="mapsIntro2">
           Use of Apple Maps is subject to Apple’s own terms and privacy
           practices.
         </p>
 
-        <h2>Backups and Local Storage</h2>
+        <h2 data-i18n="sectionBackups">Backups and Local Storage</h2>
 
-        <p>
+        <p data-i18n="backupsIntro1">
           Photo Spot Note is designed to keep your data local to your device.
         </p>
 
-        <p>
+        <p data-i18n="backupsIntro2">
           For privacy, photo and audio attachment folders are excluded from system
           backups where supported.
         </p>
 
-        <p>
+        <p data-i18n="backupsIntro3">
           This means deleting the app, losing the device, or replacing the device
           may remove locally stored spot media unless you have another copy.
         </p>
 
-        <h2>Deleting Your Data</h2>
+        <h2 data-i18n="sectionDelete">Deleting Your Data</h2>
 
-        <p>You can delete individual photo spots inside the app.</p>
+        <p data-i18n="deleteIntro1">You can delete individual photo spots inside the app.</p>
 
-        <p>
+        <p data-i18n="deleteIntro2">
           Deleting a spot removes its local photo and audio attachments from the
           app.
         </p>
 
-        <p>
+        <p data-i18n="deleteIntro3">
           If a spot has a linked Calendar event, the app will attempt to remove
           that Calendar event when the spot is deleted.
         </p>
 
-        <p>
+        <p data-i18n="deleteIntro4">
           You can also delete all app data by deleting Photo Spot Note from your
           device.
         </p>
 
-        <h2>Children’s Privacy</h2>
+        <h2 data-i18n="sectionChildren">Children’s Privacy</h2>
 
-        <p>
+        <p data-i18n="childrenIntro1">
           Photo Spot Note is not designed to knowingly collect personal
           information from children.
         </p>
 
-        <p>
+        <p data-i18n="childrenIntro2">
           The app does not provide accounts, messaging, advertising, or tracking.
         </p>
 
-        <h2>Changes to This Policy</h2>
+        <h2 data-i18n="sectionChanges">Changes to This Policy</h2>
 
-        <p>
+        <p data-i18n="changesIntro1">
           This privacy policy may be updated if the app’s features change.
         </p>
 
-        <p>
+        <p data-i18n="changesIntro2">
           If future versions add features such as iCloud sync, export/import, or
           notifications, this policy will be updated to explain how those features
           handle data.
         </p>
 
-
-        <p><a href="index.html">Back to home</a></p>
+        <p><a href="index.html" data-i18n="backHomeLink">Back to home</a></p>
       </section>
     </main>
 
     <footer>
-      <p>© 2026 CycleByteDev. All rights reserved.</p>
-      <p><a href="index.html">Home</a></p>
+      <p data-i18n="footerRights">© 2026 CycleByteDev. All rights reserved.</p>
+      <p><a href="index.html" data-i18n="footerHomeLink">Home</a></p>
     </footer>
 
     <script>
-      // Theme management
       const themeToggle = document.getElementById('themeToggle');
       const htmlElement = document.documentElement;
       const themeKey = 'theme-preference';
+      const languageKey = 'language-preference';
+      const languageToggle = document.getElementById('languageToggle');
+      let currentLanguage = localStorage.getItem(languageKey) === 'pl' ? 'pl' : 'en';
 
-      // Detect system preference
-      const getSystemTheme = () => 
+      const translations = {
+        en: {
+          pageTitle: 'Privacy Policy - Photo Spot Note',
+          backLink: '← Back to home',
+          privacyTitle: 'Privacy Policy for Photo Spot Note',
+          privacyUpdated: 'Last updated: 4 July 2026',
+          privacyIntro1: 'Photo Spot Note is a local-first app for saving photography locations, notes, photos, audio notes, and planned visits.',
+          privacyIntro2: 'This privacy policy explains what information the app uses, where it is stored, and when information may leave the app through optional system features.',
+          sectionStored: 'Data Stored by the App',
+          storedIntro: 'Photo Spot Note may store the following information when you create a photo spot:',
+          storedItem1: 'Spot name',
+          storedItem2: 'Text notes',
+          storedItem3: 'Map coordinates',
+          storedItem4: 'Planned visit date',
+          storedItem5: 'Visited status',
+          storedItem6: 'Reference photo',
+          storedItem7: 'Audio note',
+          storedItem8: 'Calendar event identifier, if you choose to add a planned visit to Calendar',
+          storedOutro: 'This data is stored locally on your device inside the app’s private storage.',
+          sectionTracking: 'No Tracking or Analytics',
+          trackingIntro1: 'Photo Spot Note does not collect analytics, tracking data, advertising identifiers, or account information.',
+          trackingIntro2: 'The app does not include third-party analytics SDKs, advertising SDKs, or tracking tools.',
+          trackingIntro3: 'The app does not operate a server and does not send your photo spot data to us.',
+          sectionLocation: 'Location',
+          locationIntro1: 'Photo Spot Note uses location permission only to help you save your current location as a photo spot and show your position on the map.',
+          locationIntro2: 'You can also place a spot manually on the map without using your current GPS location.',
+          locationIntro3: 'Your saved spot coordinates are stored locally in the app unless you choose to share them through Calendar using the Full Details option.',
+          sectionPhotos: 'Photos',
+          photosIntro1: 'If you take or choose a reference photo, the app stores a processed copy locally inside the app.',
+          photosIntro2: 'Photo Spot Note reprocesses saved photos to reduce file size and remove original image metadata, including embedded EXIF/GPS metadata.',
+          photosIntro3: 'The app does not upload your photos.',
+          sectionAudio: 'Audio Notes',
+          audioIntro1: 'If you record an audio note, the recording is stored locally inside the app.',
+          audioIntro2: 'The app does not upload your audio recordings.',
+          sectionCalendar: 'Calendar Integration',
+          calendarIntro1: 'Calendar integration is optional.',
+          calendarIntro2: 'If you choose to add a planned visit to Calendar, Photo Spot Note creates a Calendar event on your device.',
+          calendarIntro3: 'Calendar events may sync through the Calendar account configured on your device, such as iCloud, Google, or Exchange. That syncing is managed by your Calendar provider, not by Photo Spot Note.',
+          calendarIntro4: 'Photo Spot Note offers two Calendar detail levels:',
+          calendarItem1: 'Private: the Calendar event includes the spot title and an app link only.',
+          calendarItem2: 'Full Details: the Calendar event also includes your note and exact map location.',
+          calendarOutro: 'You can choose the level of detail before adding a Calendar event.',
+          sectionMaps: 'Apple Maps',
+          mapsIntro1: 'Photo Spot Note uses Apple Maps / MapKit to display maps and open saved locations in Apple Maps.',
+          mapsIntro2: 'Use of Apple Maps is subject to Apple’s own terms and privacy practices.',
+          sectionBackups: 'Backups and Local Storage',
+          backupsIntro1: 'Photo Spot Note is designed to keep your data local to your device.',
+          backupsIntro2: 'For privacy, photo and audio attachment folders are excluded from system backups where supported.',
+          backupsIntro3: 'This means deleting the app, losing the device, or replacing the device may remove locally stored spot media unless you have another copy.',
+          sectionDelete: 'Deleting Your Data',
+          deleteIntro1: 'You can delete individual photo spots inside the app.',
+          deleteIntro2: 'Deleting a spot removes its local photo and audio attachments from the app.',
+          deleteIntro3: 'If a spot has a linked Calendar event, the app will attempt to remove that Calendar event when the spot is deleted.',
+          deleteIntro4: 'You can also delete all app data by deleting Photo Spot Note from your device.',
+          sectionChildren: 'Children’s Privacy',
+          childrenIntro1: 'Photo Spot Note is not designed to knowingly collect personal information from children.',
+          childrenIntro2: 'The app does not provide accounts, messaging, advertising, or tracking.',
+          sectionChanges: 'Changes to This Policy',
+          changesIntro1: 'This privacy policy may be updated if the app’s features change.',
+          changesIntro2: 'If future versions add features such as iCloud sync, export/import, or notifications, this policy will be updated to explain how those features handle data.',
+          backHomeLink: 'Back to home',
+          footerRights: '© 2026 CycleByteDev. All rights reserved.',
+          footerHomeLink: 'Home'
+        },
+        pl: {
+          pageTitle: 'Polityka prywatności - Photo Spot Note',
+          backLink: '← Powrót do strony głównej',
+          privacyTitle: 'Polityka prywatności dla Photo Spot Note',
+          privacyUpdated: 'Ostatnia aktualizacja: 4 lipca 2026',
+          privacyIntro1: 'Photo Spot Note to aplikacja działająca przede wszystkim lokalnie, służąca do zapisywania lokalizacji fotograficznych, notatek, zdjęć, notatek audio i planowanych wizyt.',
+          privacyIntro2: 'Niniejsza polityka prywatności wyjaśnia, jakie informacje wykorzystuje aplikacja, gdzie są przechowywane i kiedy informacje mogą opuszczać aplikację przez opcjonalne funkcje systemowe.',
+          sectionStored: 'Dane przechowywane przez aplikację',
+          storedIntro: 'Photo Spot Note może przechowywać następujące informacje, gdy tworzysz miejsce fotograficzne:',
+          storedItem1: 'Nazwa miejsca',
+          storedItem2: 'Notatki tekstowe',
+          storedItem3: 'Współrzędne mapy',
+          storedItem4: 'Data planowanej wizyty',
+          storedItem5: 'Status odwiedzenia',
+          storedItem6: 'Zdjęcie referencyjne',
+          storedItem7: 'Notatka audio',
+          storedItem8: 'Identyfikator wydarzenia z kalendarza, jeśli wybierzesz dodanie planowanej wizyty do Kalendarza',
+          storedOutro: 'Te dane są przechowywane lokalnie na Twoim urządzeniu wewnątrz prywatnej przestrzeni aplikacji.',
+          sectionTracking: 'Brak śledzenia i analityki',
+          trackingIntro1: 'Photo Spot Note nie zbiera analityki, danych śledzących, identyfikatorów reklamowych ani informacji konta.',
+          trackingIntro2: 'Aplikacja nie zawiera SDK analitycznych, SDK reklamowych ani narzędzi śledzących innych firm.',
+          trackingIntro3: 'Aplikacja nie działa na serwerze i nie wysyła Twoich danych o miejscach fotograficznych do nas.',
+          sectionLocation: 'Lokalizacja',
+          locationIntro1: 'Photo Spot Note używa uprawnień do lokalizacji wyłącznie po to, aby pomóc zapisać Twoją bieżącą lokalizację jako miejsce fotograficzne i pokazać Twoją pozycję na mapie.',
+          locationIntro2: 'Możesz też umieścić miejsce ręcznie na mapie bez używania aktualnej lokalizacji GPS.',
+          locationIntro3: 'Zapisane współrzędne miejsca są przechowywane lokalnie w aplikacji, chyba że wybierzesz udostępnienie ich przez Kalendarz używając opcji Szczegóły pełne.',
+          sectionPhotos: 'Zdjęcia',
+          photosIntro1: 'Jeśli zrobisz lub wybierzesz zdjęcie referencyjne, aplikacja przechowuje jego przetworzoną kopię lokalnie wewnątrz aplikacji.',
+          photosIntro2: 'Photo Spot Note przetwarza zapisane zdjęcia, aby zmniejszyć ich rozmiar i usunąć oryginalne metadane obrazu, w tym osadzone dane EXIF/GPS.',
+          photosIntro3: 'Aplikacja nie wysyła Twoich zdjęć.',
+          sectionAudio: 'Notatki audio',
+          audioIntro1: 'Jeśli nagrasz notatkę audio, nagranie jest przechowywane lokalnie wewnątrz aplikacji.',
+          audioIntro2: 'Aplikacja nie wysyła Twoich nagrań audio.',
+          sectionCalendar: 'Integracja z kalendarzem',
+          calendarIntro1: 'Integracja z kalendarzem jest opcjonalna.',
+          calendarIntro2: 'Jeśli wybierzesz dodanie planowanej wizyty do Kalendarza, Photo Spot Note utworzy wydarzenie w kalendarzu na Twoim urządzeniu.',
+          calendarIntro3: 'Wydarzenia kalendarza mogą synchronizować się przez konto kalendarza skonfigurowane na Twoim urządzeniu, takie jak iCloud, Google lub Exchange. Ta synchronizacja jest zarządzana przez dostawcę Kalendarza, a nie przez Photo Spot Note.',
+          calendarIntro4: 'Photo Spot Note oferuje dwa poziomy szczegółów wydarzenia w kalendarzu:',
+          calendarItem1: 'Prywatne: wydarzenie w kalendarzu zawiera wyłącznie tytuł miejsca i link do aplikacji.',
+          calendarItem2: 'Szczegóły pełne: wydarzenie w kalendarzu zawiera również Twoją notatkę i dokładną lokalizację na mapie.',
+          calendarOutro: 'Możesz wybrać poziom szczegółów przed dodaniem wydarzenia do kalendarza.',
+          sectionMaps: 'Apple Maps',
+          mapsIntro1: 'Photo Spot Note używa Apple Maps / MapKit do wyświetlania map i otwierania zapisanych lokalizacji w Apple Maps.',
+          mapsIntro2: 'Korzystanie z Apple Maps podlega własnym warunkom i praktykom prywatności firmy Apple.',
+          sectionBackups: 'Kopie zapasowe i lokalne przechowywanie',
+          backupsIntro1: 'Photo Spot Note jest zaprojektowane tak, aby przechowywać Twoje dane lokalnie na Twoim urządzeniu.',
+          backupsIntro2: 'Dla zachowania prywatności foldery załączników zdjęć i audio są wyłączone z kopii zapasowych systemu, gdy jest to wspierane.',
+          backupsIntro3: 'To oznacza, że usunięcie aplikacji, utrata urządzenia lub jego wymiana może usunąć lokalnie przechowywane media miejsca, chyba że masz ich inną kopię.',
+          sectionDelete: 'Usuwanie Twoich danych',
+          deleteIntro1: 'Możesz usunąć pojedyncze miejsca fotograficzne w aplikacji.',
+          deleteIntro2: 'Usunięcie miejsca usuwa jego lokalne załączniki zdjęciowe i audio z aplikacji.',
+          deleteIntro3: 'Jeśli miejsce ma powiązane wydarzenie w Kalendarzu, aplikacja spróbuje usunąć to wydarzenie po usunięciu miejsca.',
+          deleteIntro4: 'Możesz też usunąć wszystkie dane aplikacji, usuwając Photo Spot Note z urządzenia.',
+          sectionChildren: 'Prywatność dzieci',
+          childrenIntro1: 'Photo Spot Note nie jest zaprojektowane do świadomego zbierania danych osobowych dzieci.',
+          childrenIntro2: 'Aplikacja nie zapewnia kont, komunikatorów, reklam ani śledzenia.',
+          sectionChanges: 'Zmiany tej polityki',
+          changesIntro1: 'Ta polityka prywatności może zostać zaktualizowana, jeśli funkcje aplikacji się zmienią.',
+          changesIntro2: 'Jeśli przyszłe wersje dodadzą funkcje takie jak synchronizacja iCloud, eksport/import lub powiadomienia, ta polityka zostanie zaktualizowana, aby wyjaśnić, jak te funkcje obsługują dane.',
+          backHomeLink: 'Powrót do strony głównej',
+          footerRights: '© 2026 CycleByteDev. Wszelkie prawa zastrzeżone.',
+          footerHomeLink: 'Strona główna'
+        }
+      };
+
+      const getSystemTheme = () =>
         window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-      // Load saved theme or use system preference
       const loadTheme = () => {
         const saved = localStorage.getItem(themeKey);
         return saved || getSystemTheme();
       };
 
-      // Update theme
       const setTheme = (theme) => {
         const isDark = theme === 'dark';
         htmlElement.setAttribute('data-theme', theme);
         localStorage.setItem(themeKey, theme);
-        themeToggle.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+        const themeLabel = currentLanguage === 'pl'
+          ? (isDark ? '☀️ Jasny' : '🌙 Ciemny')
+          : (isDark ? '☀️ Light' : '🌙 Dark');
+        themeToggle.textContent = themeLabel;
       };
 
-      // Initialize theme
+      const updateLanguageButton = (language) => {
+        const flag = language === 'pl' ? '🇵🇱' : '🇬🇧';
+        languageToggle.textContent = flag;
+        languageToggle.setAttribute('aria-label', language === 'pl' ? 'Switch to English' : 'Switch to Polish');
+        languageToggle.setAttribute('title', language === 'pl' ? 'Switch to English' : 'Switch to Polish');
+      };
+
+      const applyLanguage = (language) => {
+        currentLanguage = language;
+        htmlElement.setAttribute('lang', language);
+        document.body.setAttribute('data-lang', language);
+        document.title = translations[language].pageTitle;
+
+        document.querySelectorAll('[data-i18n]').forEach((element) => {
+          const key = element.getAttribute('data-i18n');
+          if (translations[language][key]) {
+            element.textContent = translations[language][key];
+          }
+        });
+
+        updateLanguageButton(language);
+        localStorage.setItem(languageKey, language);
+        const currentTheme = htmlElement.getAttribute('data-theme') || loadTheme();
+        setTheme(currentTheme);
+      };
+
       const currentTheme = loadTheme();
       setTheme(currentTheme);
+      applyLanguage(currentLanguage);
 
-      // Toggle theme on button click
       themeToggle.addEventListener('click', () => {
         const current = htmlElement.getAttribute('data-theme') || getSystemTheme();
         const next = current === 'dark' ? 'light' : 'dark';
         setTheme(next);
       });
 
-      // Listen for system theme changes
+      languageToggle.addEventListener('click', () => {
+        applyLanguage(currentLanguage === 'pl' ? 'en' : 'pl');
+      });
+
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem(themeKey)) {
           setTheme(e.matches ? 'dark' : 'light');
